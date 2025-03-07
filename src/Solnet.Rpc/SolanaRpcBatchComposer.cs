@@ -59,15 +59,7 @@ namespace Solnet.Rpc
         {
             _rpcClient = rpcClient ?? throw new ArgumentNullException(nameof(rpcClient));
             _reqs = new List<RpcBatchReqRespItem>();
-            _jsonOptions = new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                Converters =
-                {
-                    new TransactionMetaInfoConverter(),
-                    new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
-                }
-            };
+            _jsonOptions = JsonRpcSerializerOptions.Default;
         }
 
         #region Execution

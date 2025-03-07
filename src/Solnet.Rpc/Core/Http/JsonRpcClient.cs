@@ -54,16 +54,7 @@ namespace Solnet.Rpc.Core.Http
             NodeAddress = new Uri(url);
             _httpClient = httpClient ?? new HttpClient { BaseAddress = NodeAddress };
             _rateLimiter = rateLimiter;
-            _serializerOptions = new JsonSerializerOptions
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                Converters =
-                {
-                    new EncodingConverter(),
-                    new TransactionMetaInfoConverter(),
-                    new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
-                }
-            };
+            _serializerOptions = JsonRpcSerializerOptions.Default;
         }
 
         /// <summary>

@@ -7,6 +7,7 @@ using Solnet.Rpc.Models;
 
 namespace Solnet.Rpc.Converters;
 
+/*
 /// <summary>
 /// Converts a TransactionMetaInfo from json into its model representation.
 /// </summary>
@@ -81,3 +82,4 @@ public class TransactionMetaInfoConverter : JsonConverter<TransactionMetaInfo>
         JsonSerializer.Serialize(writer, value, options);
     }
 }
+*/

@@ -43,17 +43,7 @@ namespace Solnet.Rpc
         /// <summary>
         /// JSON serializer options
         /// </summary>
-        private JsonSerializerOptions _jsonOptions = new JsonSerializerOptions()
-        {
-            MaxDepth = 64,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            Converters =
-            {
-                new EncodingConverter(),
-                new TransactionMetaInfoConverter(),
-                new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
-            }
-        };
+        private JsonSerializerOptions _jsonOptions = JsonRpcSerializerOptions.Default;
 
         /// <summary>
         /// Internal constructor.

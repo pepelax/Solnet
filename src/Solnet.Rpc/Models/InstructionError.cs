@@ -1,28 +1,35 @@
-﻿namespace Solnet.Rpc.Models
+﻿using MessagePack;
+
+namespace Solnet.Rpc.Models
 {
     /// <summary>
     /// Represents an Instruction error.
     /// </summary>
+    [MessagePackObject]
     public class InstructionError
     {
         /// <summary>
         /// The index of the instruction that caused the error.
         /// </summary>
+        [Key(0)]
         public int InstructionIndex { get; set; }
 
         /// <summary>
         /// The type of the instruction error.
         /// </summary>
+        [Key(1)]
         public InstructionErrorType Type { get; set; }
 
         /// <summary>
         /// Possible custom error id from a program.
         /// </summary>
+        [Key(2)]
         public uint? CustomError { get; set; }
 
         /// <summary>
         /// Possible string from borsh error.
         /// </summary>
+        [Key(3)]
         public string BorshIoError { get; set; }
     }
 

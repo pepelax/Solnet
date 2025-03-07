@@ -1,6 +1,7 @@
 ﻿// ReSharper disable UnusedAutoPropertyAccessor.Global
 // ReSharper disable ClassNeverInstantiated.Global
 
+using MessagePack;
 using System.Text.Json.Serialization;
 
 namespace Solnet.Rpc.Models
@@ -8,12 +9,14 @@ namespace Solnet.Rpc.Models
     /// <summary>
     /// Represents a log during transaction simulation.
     /// </summary>
+    [MessagePackObject]
     public class Log
     {
         /// <summary>
         /// The error associated with the transaction simulation.
         /// </summary>
         [JsonPropertyName("err")]
+        [Key(0)]
         public TransactionError Error { get; set; }
 
         /// <summary>
@@ -22,34 +25,40 @@ namespace Solnet.Rpc.Models
         /// This will be null if the simulation failed before the transaction was able to execute.
         /// </remarks>
         /// </summary>
+        [Key(1)]
         public string[] Logs { get; set; }
     }
 
     /// <summary>
     /// Represents a log message when subscribing to the log output of the Streaming RPC.
     /// </summary>
+    [MessagePackObject]
     public class LogInfo : Log
     {
         /// <summary>
         /// The signature of the transaction.
         /// </summary>
+        [Key(2)]
         public string Signature { get; set; }
     }
 
     /// <summary>
     /// Represents the result of a transaction simulation.
     /// </summary>
+    [MessagePackObject]
     public class SimulationLogs
     {
         /// <summary>
         /// Account infos as requested in the simulateTransaction method.
         /// </summary>
+        [Key(0)]
         public AccountInfo[] Accounts { get; set; }
 
         /// <summary>
         /// The error associated with the transaction simulation.
         /// </summary>
         [JsonPropertyName("err")]
+        [Key(1)]
         public TransactionError Error { get; set; }
 
 
@@ -59,6 +68,7 @@ namespace Solnet.Rpc.Models
         /// This will be null if the simulation failed before the transaction was able to execute.
         /// </remarks>
         /// </summary>
+        [Key(2)]
         public string[] Logs { get; set; }
     }
 
@@ -66,11 +76,13 @@ namespace Solnet.Rpc.Models
     /// Represents a complete error message.
     /// </summary>
     /// <remarks>See RpcError::RpcResponseError in solana\client\src\rpc_request.rs</remarks>
+    [MessagePackObject]
     public class ErrorData : SimulationLogs
     {
         /// <summary>
         /// Represents the number of compute units consumed by the transactions.
         /// </summary>
+        [Key(3)]
         public ulong UnitsConsumed { get; set; }
     }
 }

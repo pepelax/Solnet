@@ -1,4 +1,5 @@
-﻿using Solnet.Rpc.Converters;
+﻿using MessagePack;
+using Solnet.Rpc.Converters;
 using System.Text.Json.Serialization;
 
 namespace Solnet.Rpc.Models
@@ -7,16 +8,19 @@ namespace Solnet.Rpc.Models
     /// Represents a Transaction Error.
     /// </summary>
     [JsonConverter(typeof(TransactionErrorJsonConverter))]
+    [MessagePackObject]
     public class TransactionError
     {
         /// <summary>
         /// The type of transaction error.
         /// </summary>
+        [Key(0)]
         public TransactionErrorType Type { get; set; }
 
         /// <summary>
         /// The inner instruction error, if the <c>Type</c> is <c>TransactionErrorType.InstructionError</c>.
         /// </summary>
+        [Key(1)]
         public InstructionError InstructionError { get; set; }
     }
 

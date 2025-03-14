@@ -43,7 +43,7 @@ namespace Solnet.Rpc
         /// <summary>
         /// JSON serializer options
         /// </summary>
-        private JsonSerializerOptions _jsonOptions = JsonRpcSerializerOptions.Default;
+        private readonly JsonSerializerOptions _jsonOptions = JsonRpcSerializerOptions.Default;
 
         /// <summary>
         /// Internal constructor.
